@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+{% for movie in movies %}
+    <div>
+        <ul>
+            <li>
+                <strong>Название фильма:</strong>
+                {{ movie.title }}
+            </li>
+           
+                <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="200">
+            <li>
+                <strong>Описание:</strong>
+                {{ movie.description }}
+            </li>
+            <li>
+                <strong>Год выпуска:</strong>
+                {{ movie.year }}
+            </li>
+            <li>
+                <strong>Страна производства:</strong>
+                {{ movie.country }}
+            </li>
+            <li>
+                <strong>Режиссеры:</strong>
+                {% for director in movie.directors.all %}
+                    {{ director.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+            <li>
+                <strong>Актеры:</strong>
+                {% for actor in movie.actors.all %}
+                    {{ actor.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+
+        </ul>
+    </div>
+{% endfor %}
+
+
+</body>
+</html>
